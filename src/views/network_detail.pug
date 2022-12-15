@@ -135,10 +135,11 @@ block net_content
             td
               if (peer)
                 each path in peer.paths
-                  - const [ip, port] = path.address.split('/');
-                  = ip
-                  span(style='color: gray;') /#{port}
-                  = ' '
+                  if (path.preferred == true)
+                    - const [ip, port] = path.address.split('/');
+                    = ip
+                    span(style='color: gray;') /#{port}
+                    = ' '
                 if (peer.latency != -1)
                   br
                   | (#{peer.latency} ms)
